@@ -81,7 +81,6 @@ trait JobTrait
         $str .= ' ' . $job->title;
         $str .= ' ' . $job->description;
         $str .= $job->getJobSkillsStr();
-        $str .= ((bool) $job->is_freelance) ? ' freelance remote work from home multiple cities' : '';
         $str .= ' ' . $job->getCareerLevel('career_level');
         $str .= ((bool) $job->hide_salary === false) ? ' ' . $job->salary_from . ' ' . $job->salary_to : '';
         $str .= $job->getSalaryPeriod('salary_period');
@@ -104,7 +103,6 @@ trait JobTrait
         $job->country_id = $request->input('country_id');
         $job->state_id = $request->input('state_id');
         $job->city_id = $request->input('city_id');
-        $job->is_freelance = $request->input('is_freelance');
         $job->career_level_id = $request->input('career_level_id');
         $job->salary_from = (int) $request->input('salary_from');
         $job->salary_to = (int) $request->input('salary_to');
