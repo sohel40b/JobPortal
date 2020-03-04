@@ -8,6 +8,7 @@ use Input;
 use Redirect;
 use Carbon\Carbon;
 use App\User;
+Use App\JobApply;
 use App\Helpers\MiscHelper;
 use App\Helpers\DataArrayHelper;
 use App\Http\Requests;
@@ -41,24 +42,19 @@ class JobCvSearchbyCompany extends Controller
     public function CvSearchByCompany(Request $request)
     {
         $search = $request->query('search', '');
+        $users_ids = $request->query('id', array());
         $functional_area_ids = $request->query('functional_area_id', array());
         $career_level_ids = $request->query('career_level_id', array());
         $job_experience_ids = $request->query('job_experience_id', array());
         $order_by = $request->query('order_by', 'id');
         $limit = 10;
-        $jobSeekers = $this->fetchAppliedCv($search, $functional_area_ids, $career_level_ids, $job_experience_ids, $order_by, $limit);
+        $jobSeekers = $this->fetchAppliedCv($search, $users_ids, $functional_area_ids, $career_level_ids, $job_experience_ids, $order_by, $limit);
 
         /*         * ************************************************** */
-
-        $functionalAreaIdsArray = $this->fetchIdsArray($search, $functional_area_ids, $career_level_ids, $job_experience_ids, 'users.functional_area_id');
-
-        /*         * ************************************************** */
-
-        $careerLevelIdsArray = $this->fetchIdsArray($search, $functional_area_ids, $career_level_ids, $job_experience_ids, 'users.career_level_id');
+        $usersIdsArray = $this->fetchIdsArray($search, $users_ids, $functional_area_ids, $career_level_ids, $job_experience_ids, 'job_apply.user_id');
 
         /*         * ************************************************** */
-
-        $jobExperienceIdsArray = $this->fetchIdsArray($search, $functional_area_ids, $career_level_ids, $job_experience_ids, 'users.job_experience_id');
+        $userIdsArray = $this->fetchUserIdsArray($usersIdsArray);
 
         /*         * ************************************************** */
 
@@ -67,9 +63,8 @@ class JobCvSearchbyCompany extends Controller
                         ->with('careerLevels', $this->careerLevels)
                         ->with('jobExperiences', $this->jobExperiences)
                         ->with('jobSeekers', $jobSeekers)
-                        ->with('functionalAreaIdsArray', $functionalAreaIdsArray)
-                        ->with('careerLevelIdsArray', $careerLevelIdsArray)
-                        ->with('jobExperienceIdsArray', $jobExperienceIdsArray);
+                        ->with('usersIdsArray', $usersIdsArray)
+                        ->with('userIdsArray', $userIdsArray);
     }
 
 
