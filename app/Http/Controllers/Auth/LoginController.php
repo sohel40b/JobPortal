@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Auth;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Socialite;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -96,6 +98,14 @@ use AuthenticatesUsers;
                     'password' => bcrypt($str),
                     'is_active' => 1,
                     'verified' => 1,
+        ]);
+    }
+
+    function authenticated(Request $request, $user)
+    {
+        $user->update([
+            'last_login_at' => Carbon::now()->toDateTimeString(),
+            'last_login_ip' => $request->getClientIp()
         ]);
     }
 

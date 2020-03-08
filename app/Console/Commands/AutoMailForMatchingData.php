@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use Auth;
 use App\User;
+use App\Job;
 use App\MatchingDataMailProcess;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
@@ -41,11 +43,23 @@ class AutoMailForMatchingData extends Command
      */
     public function handle()
     {
-        $users = MatchingDataMailProcess::all();
-        //$last_data = MatchingDataMailProcess::orderBy('id', 'desc')->whereRaw('job_functional_area_id')->take(1)->get();
+        //$users = MatchingDataMailProcess::all();
+        $last_data = MatchingDataMailProcess::orderBy('created_at', 'desc')->whereRaw('job_functional_area_id')->take(1)->get();
         //$user_f = MatchingDataMailProcess::orderBy('user_id', 'desc')->whereRaw('user_functional_area_id')->get();
         //$countData = MatchingDataMailProcess::select($last_data,'user_functional_area_id')->where('id')->get();
-        $users = MatchingDataMailProcess::where('user_functional_area_id', '=', 1)->get();
+        //$users = MatchingDataMailProcess::where($last_data)->pluck('user_functional_area_id')->get();
+        //$users = MatchingDataMailProcess::where('job_functional_area_id', '=', DB::raw('user_functional_area_id'))
+                                                //->where('job_functional_area_id', $last_data)
+                                                //->get();
+
+        $users = MatchingDataMailProcess::where('created_at', 'desc')
+                                            ->whereRaw('job_functional_area_id')
+                                            ->take(1)
+                                            ->get();
+        //$users = MatchingDataMailProcess::select(DB::raw('COUNT(*) as total_quantity, job_functional_area_id'))
+                                            //->where('job_functional_area_id', '>', 'user_functional_area_id')
+                                            //->groupBy('job_functional_area_id')
+                                           // ->get();
 
         foreach ($users as $user) {
            Mail::send('emails.match_categories_job', ['users' => $users], function ($mail) use ($user) {

@@ -16,6 +16,9 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         'App\Console\Commands\CallRoute',
         'App\Console\Commands\AutoMailForMatchingData',
+        'App\Console\Commands\EveryWeekMail',
+        'App\Console\Commands\SubscriptionEmail',
+        'App\Console\Commands\InactiveUser',
     ];
 
     /**
@@ -28,7 +31,10 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->command('autoMail:matchingData')->everyFiveMinutes();
+        $schedule->command('autoMail:matchingData')->everyFiveMinutes()->withoutOverlapping(5)->runInBackground();
+        $schedule->command('subscriptions:email')->dailyAt('05:30')->withoutOverlapping(5)->runInBackground();
+        $schedule->command('everyWeek:saturdays')->weekly()->saturdays()->at('03:01')->withoutOverlapping(5)->runInBackground();
+        $schedule->command('inactive:user')->quarterly()->withoutOverlapping(5)->runInBackground();
         $schedule->command('queue:work --stop-when-empty')->everyFiveMinutes()->withoutOverlapping(5)->sendOutputTo(storage_path() . '/logs/queue-jobs.log');
         $schedule->command('route:call check-package-validity')->daily()->withoutOverlapping(5)->sendOutputTo(storage_path() . '/logs/queue-jobs.log');
     }

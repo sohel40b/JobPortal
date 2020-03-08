@@ -60,7 +60,9 @@ trait FetchJobSeekers
         'users.package_end_date',
         'users.jobs_quota',
         'users.availed_jobs_quota',
-        'users.search'
+        'users.search',
+        'last_login_at',
+        'last_login_ip'
     );
 
     public function fetchJobSeekers($search = '', $industry_ids = array(), $functional_area_ids = array(), $country_ids = array(), $state_ids = array(), $city_ids = array(), $career_level_ids = array(), $gender_ids = array(), $job_experience_ids = array(), $current_salary = 0, $expected_salary = 0, $salary_currency = '', $order_by = 'id', $limit = 10)
