@@ -28,9 +28,6 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\JobAppliedJobSeekerListener',
             'App\Listeners\JobAppliedCompanyListener',
         ],
-        'App\Events\AutoMail' => [
-            'App\Listeners\MatchCategoriesJobListener',
-        ],
     ];
 
     /**
