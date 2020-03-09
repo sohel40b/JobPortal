@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Auth;
 use App\User;
 use App\Job;
+use Illuminate\Http\Request;
 use App\MatchingDataMailProcess;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
@@ -41,28 +42,37 @@ class AutoMailForMatchingData extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(Request $request)
     {
         //$users = MatchingDataMailProcess::all();
-        $last_data = MatchingDataMailProcess::orderBy('created_at', 'desc')->whereRaw('job_functional_area_id')->take(1)->get();
+        $last_data = MatchingDataMailProcess::orderBy('created_at', 'desc')->whereRaw('job_id')->take(1)->get();
         //$user_f = MatchingDataMailProcess::orderBy('user_id', 'desc')->whereRaw('user_functional_area_id')->get();
         //$countData = MatchingDataMailProcess::select($last_data,'user_functional_area_id')->where('id')->get();
         //$users = MatchingDataMailProcess::where($last_data)->pluck('user_functional_area_id')->get();
         //$users = MatchingDataMailProcess::where('job_functional_area_id', '=', DB::raw('user_functional_area_id'))
                                                 //->where('job_functional_area_id', $last_data)
                                                 //->get();
-
-        $users = MatchingDataMailProcess::where('created_at', 'desc')
-                                            ->whereRaw('job_functional_area_id')
-                                            ->take(1)
-                                            ->get();
+        //$users = MatchingDataMailProcess::select('user_functional_area_id')
+                                        //->selectRaw('count(user_functional_area_id) as qty')
+                                       // ->groupBy('user_functional_area_id')
+                                        //->orderBy('qty', 'DESC')
+                                       // ->having('qty', '>', 1)
+                                       // ->get();
+        //$job_id = $request->input('job_id');
+        $users = MatchingDataMailProcess::select("*", DB::raw("CONCAT(matching_data_mail_process.job_functional_area_id,' ',matching_data_mail_process.user_functional_area_id) as full_name"))->get();
+        /*$users = DB::table('matching_data_mail_process')
+                            ->select('user_functional_area_id', 'job_functional_area_id', DB::raw('count(*) as count'))
+                            ->groupBy('user_functional_area_id', 'job_functional_area_id')
+                            ->havingRaw('COUNT(*) > 1')
+                            ->get();*/
+        //$users = MatchingDataMailProcess::where('job_id', '=', $job_id)->where('user_functional_area_id',1)->get();
         //$users = MatchingDataMailProcess::select(DB::raw('COUNT(*) as total_quantity, job_functional_area_id'))
                                             //->where('job_functional_area_id', '>', 'user_functional_area_id')
                                             //->groupBy('job_functional_area_id')
                                            // ->get();
-
+        dd($users);
         foreach ($users as $user) {
-           Mail::send('emails.match_categories_job', ['users' => $users], function ($mail) use ($user) {
+           Mail::send('emails.match_job_field_with_users', ['users' => $users], function ($mail) use ($user) {
                 $mail->from(config('mail.recieve_to.address'), config('mail.recieve_to.name'));
                 $mail->replyTo(config('mail.recieve_to.address'), config('mail.recieve_to.name'));
                 $mail->to($user->user_email)

@@ -36,7 +36,6 @@ use App\Http\Requests\Front\JobFrontFormRequest;
 use App\Http\Controllers\Controller;
 use App\Traits\Skills;
 use App\Events\JobPosted;
-use App\Events\AutoMail;
 
 trait JobTrait
 {

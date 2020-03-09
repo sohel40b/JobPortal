@@ -28,6 +28,9 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\JobAppliedJobSeekerListener',
             'App\Listeners\JobAppliedCompanyListener',
         ],
+        'App\Events\LiveJob' => [
+            'App\Listeners\ComanyLiveJobListener',
+        ],
     ];
 
     /**

@@ -16,6 +16,7 @@ use App\Http\Controllers\Controller;
 use App\Traits\JobTrait;
 use App\Helpers\MiscHelper;
 use App\Helpers\DataArrayHelper;
+use App\Events\LiveJob;
 
 class JobController extends Controller
 {
@@ -127,6 +128,7 @@ class JobController extends Controller
             $job = Job::findOrFail($id);
             $job->is_active = 1;
             $job->update();
+            event(new LiveJob($job));
             echo 'ok';
         } catch (ModelNotFoundException $e) {
             echo 'notok';
