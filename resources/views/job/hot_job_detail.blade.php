@@ -5,15 +5,9 @@
 <!-- Inner Page Title end -->
 @include('flash::message')
 
-
 @php
 $company = $job->getCompany();
 @endphp
-
-
-
-
-
 
 <div class="listpgWraper" style="background:#FFFFFF;">
     <div class="container">
@@ -48,7 +42,7 @@ $company = $job->getCompany();
                             <p>{{$job->getJobExperience('job_experience') }}</p> 
 
                             <a class="font-weight-bold">{{__('Additional Requirements')}}</a>
-                            <p>{!!$job->getJobSkillsList()!!}</p> 
+                            <p>{!!$job->getJobSkillsStr()!!}</p> 
 
                             <a class="font-weight-bold">{{__('Job Location')}}</a>
                             <p>{{$job->getLocation() }}</p>
@@ -66,7 +60,9 @@ $company = $job->getCompany();
                                 @elseif(Auth::check() && Auth::user()->isAppliedOnJob($job->id))
                                 <a href="javascript:;" class="btn apply applied"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{__('Already Applied')}}</a>
                                 @else
-                                <a href="{{route('apply.job', $job->slug)}}" class="btn apply"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{__('Apply Now')}}</a>
+                                    @if(!Auth::guard('company')->check())
+                                    <a href="{{route('apply.job', $job->slug)}}" class="btn apply"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{__('Apply Now')}}</a>
+                                    @endif
                                 @endif
                             </div>  
 

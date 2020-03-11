@@ -61,14 +61,6 @@
         @include('admin/shared/side_bars/country_detail')
         @include('admin/shared/side_bars/state')
         @include('admin/shared/side_bars/city')
-
-		
-        <li class="heading">
-            <h3 class="uppercase">User Packages</h3>
-        </li>
-        @include('admin/shared/side_bars/package')
-
-		
 		
         <li class="heading">
             <h3 class="uppercase">Job Attributes</h3>

@@ -9,15 +9,9 @@
 @include('flash::message')
 @include('includes.inner_top_search')
 
-
 @php
 $company = $job->getCompany();
 @endphp
-
-
-
-
-
 
 <div class="listpgWraper">
     <div class="container"> 

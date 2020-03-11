@@ -30,9 +30,7 @@
                             <li class="nav-item"><a href="{{ route('trainings') }}" class="nav-link">{{__('Training')}}</a> </li>
 
 
-							@if(Auth::guard('company')->check())
-							<li class="nav-item"><a href="{{url('/job-seekers')}}" class="nav-link">{{__('Seekers')}}</a> </li>
-							@else
+							@if(!Auth::guard('company')->check())
 							<li class="nav-item"><a href="{{url('/jobs')}}" class="nav-link">{{__('Jobs')}}</a> </li>
 							@endif
 

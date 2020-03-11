@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <!-- Header start -->
 @include('includes.header')
 <!-- Header end --> 
@@ -9,37 +10,35 @@
 <!-- Popular Searches start -->
 @include('includes.popular_searches')
 <!-- Popular Searches ends --> 
-<!-- Featured Jobs start -->
+<!-- Hot Jobs start -->
 @include('includes.featured_jobs')
-<!-- Featured Jobs ends -->
-<!-- Latest Jobs start -->
-@include('includes.latest_jobs')
-<!-- Latest Jobs ends --> 
-<!-- Top Employers start -->
-@include('includes.top_employers')
-<!-- Top Employers ends --> 
+<!-- Hot Jobs ends -->
 <!-- Login box start -->
 @include('includes.login_text')
 <!-- Login box ends --> 
 <!-- How it Works start -->
 @include('includes.how_it_works')
 <!-- How it Works Ends -->
-<!-- Testimonials start -->
-@include('includes.testimonials')
-<!-- Testimonials End -->
 <!-- Video start -->
 @include('includes.video')
 <!-- Video end --> 
 <!-- Login box start -->
 @include('includes.employer_login_text')
-<!-- Login box ends --> 
+<!-- Login box ends -->
+<!-- Top Employers start -->
+@include('includes.top_employers')
+<!-- Top Employers ends --> 
 <!-- Testimonials start -->
-@include('includes.home_blogs')
+@include('includes.testimonials')
 <!-- Testimonials End -->
+<!-- Blog start -->
+@include('includes.home_blogs')
+<!-- Blog End -->
 <!-- Subscribe start -->
 @include('includes.subscribe')
 <!-- Subscribe End -->
 @include('includes.footer')
+
 @endsection
 @push('scripts') 
 <script>

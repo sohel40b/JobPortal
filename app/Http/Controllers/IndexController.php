@@ -53,7 +53,6 @@ class IndexController extends Controller
         $topIndustryIds = $this->getIndustryIdsFromCompanies(32);
         $topCityIds = $this->getCityIdsAndNumJobs(32);
         $featuredJobs = Job::active()->featured()->notExpire()->limit(12)->get();
-        $latestJobs = Job::active()->notExpire()->orderBy('id', 'desc')->limit(18)->get();
         $blogs = Blog::orderBy('id', 'desc')->where('lang', 'like', \App::getLocale())->limit(3)->get();
         $video = Video::getVideo();
         $testimonials = Testimonial::langTestimonials();
@@ -69,7 +68,6 @@ class IndexController extends Controller
                         ->with('topCityIds', $topCityIds)
                         ->with('topIndustryIds', $topIndustryIds)
                         ->with('featuredJobs', $featuredJobs)
-                        ->with('latestJobs', $latestJobs)
                         ->with('blogs', $blogs)
                         ->with('functionalAreas', $functionalAreas)
                         ->with('countries', $countries)

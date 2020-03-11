@@ -8,17 +8,15 @@
 
 
 @include('flash::message')
-@include('includes.inner_top_search')
 
 <!-- Inner Page Title end -->
 <div class="listpgWraper">
     <div class="container">
-        
         <form action="{{route('hot.job.list')}}" method="get">
             <!-- Search Result and sidebar start -->
             <div class="row"> 
                 @include('includes.job_list_side_bar')
-                
+
                 <div class="col-lg-6 col-sm-12"> 
                     <!-- Search List -->
                     <ul class="searchList">
@@ -61,19 +59,9 @@
 						
                         <!-- job end --> 
                         @endif
-                        @endforeach @endif
-						
-						
-						
-                           
-                       
-                            <!-- job end -->
-                            
-						
-						
-						
+                        @endforeach 
+                        @endif	
                     </ul>
-
                     <!-- Pagination Start -->
                     <div class="pagiWrap">
                         <div class="row">
@@ -90,10 +78,7 @@
                         </div>
                     </div>
                     <!-- Pagination end --> 
-                   
-
                 </div>
-				
 				<div class="col-lg-3 col-sm-6 pull-right">
                     <!-- Sponsord By -->
                     <div class="sidebar">
@@ -101,7 +86,6 @@
                         <div class="gad">{!! $siteSetting->listing_page_vertical_ad !!}</div>
                     </div>
                 </div>
-				
             </div>
         </form>
     </div>
@@ -109,7 +93,6 @@
 @if( Auth::check() )
 <div class="modal fade" id="show_alert" role="dialog">
     <div class="modal-dialog">
-
         <!-- Modal content-->
         <div class="modal-content">
             <form id="submit_alert">
@@ -138,13 +121,11 @@
                 </div>
             </form>
         </div>
-
     </div>
 </div>
 @else
 <div class="modal fade" id="show_alert" role="dialog">
     <div class="modal-dialog">
-
         <!-- Modal content-->
         <div class="modal-content">
             <form id="submit_alert">
@@ -170,7 +151,6 @@
                 </div>
             </form>
         </div>
-
     </div>
 </div>
 @endif

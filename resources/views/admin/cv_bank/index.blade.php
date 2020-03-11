@@ -204,8 +204,8 @@
                                 <div class="col-lg-14">
                                     <div class="searchform">
                                         <div class="row">
-                                            <div class="col-md-2"> {!! Form::select('career_level_id[]', ['' => __('Select Career level')]+$careerLevels, Request::get('career_level_id', null), array('class'=>'form-control', 'id'=>'career_level_id')) !!} </div>
                                             <div class="col-md-2"> {!! Form::select('functional_area_id[]', ['' => __('Select Functional Area')]+$functionalAreas, Request::get('functional_area_id', null), array('class'=>'form-control', 'id'=>'functional_area_id')) !!} </div>
+                                            <div class="col-md-2"> {!! Form::select('career_level_id[]', ['' => __('Select Career level')]+$careerLevels, Request::get('career_level_id', null), array('class'=>'form-control', 'id'=>'career_level_id')) !!} </div>
                                             <div class="col-md-2"> {!! Form::select('job_experience_id[]', ['' => __('Select Job Experience')]+$jobExperiences, Request::get('job_experience_id', null), array('class'=>'form-control', 'id'=>'job_experience_id')) !!} </div>
                                             
                                             

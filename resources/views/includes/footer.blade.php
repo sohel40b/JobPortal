@@ -10,7 +10,6 @@
 <div class="footerWrap"> 
     <div class="container">
         <div class="row"> 
-
             <!--Quick Links-->
             <div class="col-md-3 col-sm-6">
                 <h5>{{__('Quick Links')}}</h5>
@@ -87,7 +86,7 @@
                 <div class="bttxt">{{__('Copyright')}} &copy; {{date('Y')}} {{ $siteSetting->site_name }}. {{__('All Rights Reserved')}}. {{__('Design by')}}: <a href="" target="_blank">Sohel Rana</a></div>
             </div>
             <div class="col-md-4">
-                <div class="paylogos"><img src="{{asset('/')}}images/payment-icons.png" alt="" /></div>	
+                <div class="paylogos"><img src="" alt="" /></div>	
             </div>
         </div>
 
