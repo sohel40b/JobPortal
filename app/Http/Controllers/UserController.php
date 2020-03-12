@@ -154,7 +154,6 @@ class UserController extends Controller
                 $matchingUser->user_id = $user_id;
                 $matchingUser->user_email = $request->input('email');
                 $matchingUser->user_functional_area_id = $request->input('functional_area_id');
-                $matchingUser->status = 0;
                 $matchingUser->save();
                 }
                 else

@@ -14,7 +14,7 @@ class MatchingDataMailProcess extends Model
     //protected $dateFormat = 'U';
     protected $dates = ['created_at', 'updated_at'];
     protected $fillable = [
-        'user_id', 'job_id', 'user_email', 'user_functional_area_id', 'job_functional_area_id', 'status', 'is_featured',
+        'user_id', 'job_id', 'user_email', 'user_functional_area_id', 'job_functional_area_id', 'status',
     ];
 
     public function user()

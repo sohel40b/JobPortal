@@ -306,7 +306,7 @@ trait JobTrait
         $matchingDataMailProcess = new MatchingDataMailProcess();
         $matchingDataMailProcess->job_id = $job->id;
         $matchingDataMailProcess = $this->assignMatchingValues($matchingDataMailProcess, $request);
-        $matchingDataMailProcess->is_featured = 0;
+        $matchingDataMailProcess->status = 0;
         $matchingDataMailProcess->save();
         /****************************** */         
         event(new JobPosted($job));
@@ -442,7 +442,7 @@ trait JobTrait
         $matchingDataMailProcess = new MatchingDataMailProcess();
         $matchingDataMailProcess->job_id = $job->id;
         $matchingDataMailProcess = $this->assignMatchingValues($matchingDataMailProcess, $request);
-        $matchingDataMailProcess->is_featured = 1;
+        $matchingDataMailProcess->status = 0;
         $matchingDataMailProcess->save();
         /*         * ******************************* */
 
