@@ -48,22 +48,24 @@ class AutoMailForMatchingData extends Command
         $users = MatchingDataMailProcess::where('user_functional_area_id', 'job_functional_area_id')
                             ->orWhere('user_functional_area_id', '=', $last)
                             ->get();
-                            //dd($last);
+                           
         foreach ($users as $user) {
-           Mail::send('emails.match_job_field_with_users', ['users' => $users], function ($mail) use ($user) {
+           Mail::send('emails.matching_data_mail_process', ['users' => $users], function ($mail) use ($user) {
                 $mail->from(config('mail.recieve_to.address'), config('mail.recieve_to.name'));
                 $mail->replyTo(config('mail.recieve_to.address'), config('mail.recieve_to.name'));
                 $mail->to($user->user_email)->subject('Dear User, Reecent new Category/Hot Matching Job For You');
             });
         }
-        if( count(Mail::failures()) > 0 ) 
-        {
-            echo "Mail Not sent successfully!";
-        } 
-        else 
-        {
-            MatchingDataMailProcess::where('job_functional_area_id', '=', $last)->where('status',0)->update(['status' => 1]);
-        }
+        
+            if( count(Mail::failures()) > 0 ) 
+            {
+                echo "Mail Not sent successfully!";
+            } 
+            else 
+            {
+                MatchingDataMailProcess::where('job_functional_area_id', '=', $last)->where('status',0)->take(1)->update(array('status' => 1));
+            }
+      
         $this->info('Category And Hot Job sent to All Users');
         
     }

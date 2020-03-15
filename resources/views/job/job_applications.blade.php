@@ -4,7 +4,7 @@
 @include('includes.header')
 <!-- Header end --> 
 <!-- Inner Page Title start -->
-@include('includes.inner_page_title', ['page_title'=>__('Job Applications List')])
+@include('includes.inner_page_title', ['page_title'=>__('Job Applications List B')])
 <!-- Inner Page Title end -->
 <div class="listpgWraper">
     <div class="container">@include('flash::message')
@@ -15,9 +15,27 @@
                 <div class="myads">
                     <h3>{{__('Job Applications List')}}</h3>
                     <!-- As a link -->
-                    <nav class="navbar navbar-light bg-light" style="margin-top: 20px; padding: 15px;">
-                    <a class="navbar-brand bg-light" href="{{url('/company-cv-sorting')}}">Advance Search</a>
-                    </nav>
+                    <form action="{{url('/list-applied-users/{job_id}')}}" method="get">
+                        <div class="pageSearch">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="searchform">
+                                            <div class="row">
+                                                <div class="col-md-3"> {!! Form::select('functional_area_id[]', ['' => __('Select Functional Area')]+$functionalAreas, Request::get('functional_area_id', null), array('class'=>'form-control', 'id'=>'functional_area_id')) !!} </div>
+                                                <div class="col-md-3"> {!! Form::select('career_level_id[]', ['' => __('Select Career Level')]+$careerLevels, Request::get('career_level_id', null), array('class'=>'form-control', 'id'=>'career_level_id')) !!} </div>
+                                                <div class="col-md-3"> {!! Form::select('job_experience_id[]', ['' => __('Select Job Experience')]+$jobExperiences, Request::get('job_experience_id', null), array('class'=>'form-control', 'id'=>'job_experience_id')) !!} </div>
+                                                <div class="col-md-2">
+                                                    <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form action="{{url('/list-applied-users/{job_id}')}}" method="get">
                     <ul class="searchList" style="margin-top: 20px;">
                         <!-- job start --> 
                         @if(isset($job_applications) && count($job_applications))
@@ -70,6 +88,7 @@
                         @endforeach
                         @endif
                     </ul>
+                    </form>
                 </div>
             </div>
         </div>

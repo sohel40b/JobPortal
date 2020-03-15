@@ -24,7 +24,7 @@ trait FetchAppliedCv
         
     );
 
-    public function fetchAppliedCv($search = '', $users_ids = array(), $functional_area_ids = array(), $career_level_ids = array(), $job_experience_ids = array(), $order_by = 'id', $limit = 10)
+    public function fetchAppliedCv($search = '', $users_ids = array(), $functional_area_ids = array(), $career_level_ids = array(), $job_experience_ids = array(), $order_by = 'id', $limit = 15)
     {
         $asc_desc = 'DESC';
         $query = JobApply::select($this->fields);

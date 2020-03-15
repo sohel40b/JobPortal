@@ -8,7 +8,7 @@ Route::get('posted-jobs', 'Company\CompanyController@postedJobs')->name('posted.
 Route::get('company/{slug}', 'Company\CompanyController@companyDetail')->name('company.detail');
 Route::post('contact-company-message-send', 'Company\CompanyController@sendContactForm')->name('contact.company.message.send');
 Route::post('contact-applicant-message-send', 'Company\CompanyController@sendApplicantContactForm')->name('contact.applicant.message.send');
-Route::get('list-applied-users/{job_id}', 'Company\CompanyController@listAppliedUsers')->name('list.applied.users');
+
 Route::get('list-favourite-applied-users/{job_id}', 'Company\CompanyController@listFavouriteAppliedUsers')->name('list.favourite.applied.users');
 Route::get('add-to-favourite-applicant/{application_id}/{user_id}/{job_id}/{company_id}', 'Company\CompanyController@addToFavouriteApplicant')->name('add.to.favourite.applicant');
 Route::get('remove-from-favourite-applicant/{application_id}/{user_id}/{job_id}/{company_id}', 'Company\CompanyController@removeFromFavouriteApplicant')->name('remove.from.favourite.applicant');
@@ -16,8 +16,10 @@ Route::get('applicant-profile/{application_id}', 'Company\CompanyController@appl
 Route::get('user-profile/{id}', 'Company\CompanyController@userProfile')->name('user.profile');
 Route::get('company-followers', 'Company\CompanyController@companyFollowers')->name('company.followers');
 
-/************   Company CV search   ************** */
-Route::get('company-cv-sorting', 'JobCvSearchbyCompany@CvSearchByCompany')->name('company.cv.sorting');
+/************   Company CV search Start  ************** */
+//Route::get('company-applied-cv-search/{job_id}', 'AppliedCvSearchbyCompany@CvSearchByCompany')->name('company.applied.cv.search');
+Route::get('list-applied-users/{job_id}', 'Company\CompanyController@listAppliedUsers')->name('list.applied.users');
+/************   Company CV search End   ************** */
 //Route::get('job-applied-users/{job_id}', 'Company\CompanyController@countAppliedUsers')->name('job.applied');
 /* Route::get('company-messages', 'Company\CompanyController@companyMessages')->name('company.messages'); */
 Route::post('submit-message-seeker', 'CompanyMessagesController@submitnew_message_seeker')->name('submit-message-seeker');
