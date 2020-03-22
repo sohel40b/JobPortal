@@ -35,11 +35,10 @@
                             </div>
                         </div>
                     </form>
-                    <form action="{{url('/list-applied-users/{job_id}')}}" method="get">
                     <ul class="searchList" style="margin-top: 20px;">
                         <!-- job start --> 
-                        @if(isset($job_applications) && count($job_applications))
-                        @foreach($job_applications as $job_application)
+                        @if(isset($applied_cv) && count($applied_cv))
+                        @foreach($applied_cv as $job_application)
                         @php
                         $user = $job_application->getUser();
                         $job = $job_application->getJob();
@@ -88,7 +87,6 @@
                         @endforeach
                         @endif
                     </ul>
-                    </form>
                 </div>
             </div>
         </div>

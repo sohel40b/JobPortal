@@ -31,9 +31,9 @@ use Carbon\Carbon;
 use App\Helpers\MiscHelper;
 use App\Helpers\DataArrayHelper;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Mail\CompanyContactMail;
 use App\Mail\ApplicantContactMail;
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Requests\Front\CompanyFrontFormRequest;
 use App\Http\Controllers\Controller;
@@ -59,7 +59,7 @@ class CompanyController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('company', ['except' => ['companyDetail', 'sendContactForm', 'listAppliedUsers']]);
+        $this->middleware('company', ['except' => ['companyDetail', 'sendContactForm']]);
         $this->runCheckPackageValidity();
         $this->functionalAreas = DataArrayHelper::langFunctionalAreasArray();
         $this->careerLevels = DataArrayHelper::langCareerLevelsArray();
@@ -294,31 +294,25 @@ class CompanyController extends Controller
 
     public function listAppliedUsers(Request $request, $job_id)
     {
-        $job_applications = JobApply::where('job_id', '=', $job_id)->get();
+        //$job_applications = JobApply::where('job_id', '=', $job_id)->get();
         $search = $request->query('search', '');
         $users_ids = $request->query('id', array());
         $functional_area_ids = $request->query('functional_area_id', array());
         $career_level_ids = $request->query('career_level_id', array());
         $job_experience_ids = $request->query('job_experience_id', array());
         $order_by = $request->query('order_by', 'id');
+        $applied_cv = JobApply::where('job_id', '=', $job_id)->get();
         $limit = 15;
-
-        $job_applications = $this->fetchAppliedCv($search, $users_ids, $functional_area_ids, $career_level_ids, $job_experience_ids, $order_by, $limit);
-
+        
+        $applied_cv = $this->fetchAppliedCv($search, $users_ids, $functional_area_ids, $career_level_ids, $job_experience_ids, $order_by, $limit);
         /*         * ************************************************** */
-        $usersIdsArray = $this->fetchIdsArray($search, $users_ids, $functional_area_ids, $career_level_ids, $job_experience_ids, 'job_apply.user_id');
 
-        /*         * ************************************************** */
-        $userIdsArray = $this->fetchUserIdsArray($usersIdsArray);
-
-        /*         * ************************************************** */
         return view('job.job_applications')
-                        ->with('job_applications', $job_applications)
+                        ->with('applied_cv', $applied_cv)
                         ->with('functionalAreas', $this->functionalAreas)
                         ->with('careerLevels', $this->careerLevels)
-                        ->with('jobExperiences', $this->jobExperiences)
-                        ->with('usersIdsArray', $usersIdsArray)
-                        ->with('userIdsArray', $userIdsArray);
+                        ->with('jobExperiences', $this->jobExperiences);
+                        
     }
 
     public function listFavouriteAppliedUsers(Request $request, $job_id)

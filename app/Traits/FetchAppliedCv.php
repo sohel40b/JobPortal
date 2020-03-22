@@ -8,6 +8,8 @@ use App\JobApply;
 use App\CareerLevel;
 use App\FunctionalArea;
 use App\JobExperience;
+use App\Http\Requests;
+use Illuminate\Http\Request;
 
 trait FetchAppliedCv
 {
@@ -35,15 +37,6 @@ trait FetchAppliedCv
         return $query->paginate($limit);
     }
 
-    public function fetchIdsArray($search = '', $users_ids = array(), $functional_area_ids = array(), $career_level_ids = array(), $job_experience_ids = array(), $field = 'job_apply.id')
-    {
-        $query = JobApply::select($field);
-        $query = $this->createQuery($query, $search, $users_ids, $functional_area_ids, $career_level_ids, $job_experience_ids);
-
-        $array = $query->pluck($field)->toArray();
-        return array_unique($array);
-    }
-
     public function createQuery($query, $search = '', $users_ids = array(), $functional_area_ids = array(),  $career_level_ids = array(), $job_experience_ids = array())
     {
         $user_functional_area_ids=array();
@@ -55,8 +48,7 @@ trait FetchAppliedCv
         }
         $users_ids = $user_functional_area_ids;
 
-        /***************************************************** 
-        $user_career_level_ids=array();
+        /*$user_career_level_ids=array();
         if (isset($career_level_ids[0])) {
             $user_career_level_ids = User::whereIn('career_level_id', $career_level_ids)->pluck('id')->toArray();
             if (isset($users_ids[0]) && isset($user_career_level_ids[0])) {
@@ -75,7 +67,10 @@ trait FetchAppliedCv
         }
         $users_ids = $user_job_experience_ids;
         ***************************************************** */
+        $term = JobApply::get(['job_id']);
         
+        $a = JobApply::where('job_id', '=', $term)->get();
+
         if ($search != '') {
             $query->whereRaw("MATCH (`search`) AGAINST ('$search*' IN BOOLEAN MODE)");
         }
@@ -83,15 +78,6 @@ trait FetchAppliedCv
             $query->whereIn('job_apply.user_id', $users_ids);
         }
         return $query;
-    }
-
-    public function fetchUserIdsArray($usersIdsArray = array())
-    {
-        $query = User::select('functional_area_id');
-        $query->whereIn('id', $usersIdsArray);
-
-        $array = $query->pluck('functional_area_id')->toArray();
-        return array_unique($array);
     }
 
 }
