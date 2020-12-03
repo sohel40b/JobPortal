@@ -37,6 +37,8 @@ include_once($real_path . 'ownership_type.php');
 include_once($real_path . 'job.php');
 include_once($real_path . 'salary_period.php');
 include_once($real_path . 'package.php');
+include_once($real_path . 'resource_person.php');
+include_once($real_path . 'training.php');
 include_once($real_path . 'video.php');
 include_once($real_path . 'testimonial.php');
 include_once($real_path . 'slider.php');

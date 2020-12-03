@@ -25,37 +25,39 @@ Table Of Index
 
 10. Video css
 
-11. Testimonials css
+11. Training Text css
 
-12. App Box css
+12. Testimonials css
 
-13. Search List css
+13. App Box css
 
-14. Job Detail css
+14. Search List css
 
-15. Cms Pages css
+15. Job Detail css
 
-16. FAQs css css
+16. Cms Pages css
 
-17. User Account css
+17. FAQs css css
 
-18. 404 Page css
+18. User Account css
 
-19. About Us css
+19. 404 Page css
 
-20. Pay Packages css
+20. About Us css
 
-21. Blog Listing css
+21. Pay Packages css
 
-22. Blog Grid css
+22. Blog Listing css
 
-23. Blog Detail css
+23. Blog Grid css
 
-24. Blog sidebar css
+24. Blog Detail css
 
-25. Footer css
+25. Blog sidebar css
 
-26. Media Queries css
+26. Footer css
+
+27. Media Queries css
 
 ------------------------------------------*/
 
@@ -1683,9 +1685,14 @@ label.partTime[title="Rotating"] {
     border: 20px solid #fff;
     box-shadow: 3px 8px 30px rgba(0,0,0,0.2);
 }
-
-
-
+/************************************************
+           == Training Text css==
+*************************************************/
+.trainingtextbox {padding:40px 0 120px 0; text-align: center; background: #4bdbd6;}
+.trainingtextbox p{max-width: 770px; margin: 0 auto; color: black;}
+.trainingtextbox .viewallbtn{margin-top:30px;}
+.trainingtextbox .viewallbtn a{background: #333;}
+.trainingtextbox .viewallbtn a:hover{background: #17d27c;}
 
 /************************************************
            == Loginbox css==

@@ -42,26 +42,31 @@ Route::get('cronjob/send-alerts', 'AlertCronController@index')->name('send-alert
 
 Route::post('subscribe-newsletter', 'SubscriptionController@getSubscription')->name('subscribe.newsletter');
 
-/* * ******** OrderController ************ */
-include_once($real_path . 'order.php');
-/* * ******** CmsController ************ */
-include_once($real_path . 'cms.php');
-/* * ******** JobController ************ */
-include_once($real_path . 'job.php');
-/* * ******** ContactController ************ */
-include_once($real_path . 'contact.php');
-/* * ******** CompanyController ************ */
-include_once($real_path . 'company.php');
-/* * ******** AjaxController ************ */
-include_once($real_path . 'ajax.php');
-/* * ******** UserController ************ */
-include_once($real_path . 'site_user.php');
-/* * ******** User Auth ************ */
-Auth::routes();
-/* * ******** Company Auth ************ */
-include_once($real_path . 'company_auth.php');
 /* * ******** Admin Auth ************ */
 include_once($real_path . 'admin_auth.php');
+/* * ******** AjaxController ************ */
+include_once($real_path . 'ajax.php');
+/* * ******** CmsController ************ */
+include_once($real_path . 'cms.php');
+/* * ******** Company Auth ************ */
+include_once($real_path . 'company_auth.php');
+/* * ******** CompanyController ************ */
+
+Auth::routes();
+
+include_once($real_path . 'company.php');
+/* * ******** ContactController ************ */
+include_once($real_path . 'contact.php');
+/* * ******** JobController ************ */
+include_once($real_path . 'job.php');
+/* * ******** OrderController ************ */
+include_once($real_path . 'order.php');
+/* * ******** UserController ************ */
+include_once($real_path . 'site_user.php');
+/* * ******** Training Controller************ */
+include_once($real_path . 'training.php');
+/* * ******** Training Auth************ */
+include_once($real_path . 'training_auth.php');
 
 
 Route::get('blog', 'BlogController@index')->name('blogs');
@@ -75,7 +80,6 @@ Route::get('/sitemap/companies', 'SitemapController@companies');
 /* * ********Page Link ********** */
 Route::get('tax', 'PageLinkController@taxs')->name('taxs');
 Route::get('publication', 'PageLinkController@publications')->name('publications');
-Route::get('training', 'PageLinkController@trainings')->name('trainings');
 Route::get('recruiment', 'PageLinkController@recruiments')->name('recruiments');
 
 

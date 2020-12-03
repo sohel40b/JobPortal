@@ -31,6 +31,12 @@
         @include('admin/shared/side_bars/cv_bank')
 
         <li class="heading">
+            <h3 class="uppercase">Training</h3>
+        </li>
+        @include('admin/shared/side_bars/training_posting')
+        @include('admin/shared/side_bars/resource_person')
+
+        <li class="heading">
             <h3 class="uppercase">Modules</h3>
         </li>
         @include('admin/shared/side_bars/job')

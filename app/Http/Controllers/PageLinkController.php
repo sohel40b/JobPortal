@@ -36,11 +36,6 @@ class PageLinkController extends Controller
         return view('publication');
     }
 
-    public function trainings()
-    {
-        return view('training');
-    }
-
     public function recruiments()
     {
         return view('recruiment');

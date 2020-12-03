@@ -21,13 +21,13 @@
                                 <ul class="dropdown-menu">
                                     <li class="nav-item"><a href="{{ route('taxs') }}" class="nav-link">{{__('Tax Consultancy')}}</a> </li>
                                     <li class="nav-item"><a href="{{ route('publications') }}" class="nav-link">{{__('Publications')}}</a></li>
-                                    <li class="nav-item"><a href="{{ route('trainings') }}" class="nav-link">{{__('Training')}}</a></li>
+                                    <li class="nav-item"><a href="{{ route('training.home') }}" class="nav-link">{{__('Training')}}</a></li>
                                     <li class="nav-item"><a href="{{ route('recruiments') }}" class="nav-link">{{__('Recruiment Specialist')}}</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item"><a href="{{ route('taxs') }}" class="nav-link">{{__('Tax')}}</a> </li>
                             <li class="nav-item"><a href="{{ route('publications') }}" class="nav-link">{{__('Publication')}}</a> </li>
-                            <li class="nav-item"><a href="{{ route('trainings') }}" class="nav-link">{{__('Training')}}</a> </li>
+                            <li class="nav-item"><a href="{{ route('training.home') }}" class="nav-link">{{__('Training')}}</a> </li>
 
 
 							@if(!Auth::guard('company')->check())

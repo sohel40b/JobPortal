@@ -28,6 +28,8 @@ if (!isset($seo)) {
     <link href="{{asset('/')}}css/font-awesome.css" rel="stylesheet">
     <!-- Custom Style -->
     <link href="{{asset('/')}}css/main.css" rel="stylesheet">
+    <!-- Training Style -->
+    <link href="{{asset('/')}}css/training.css" rel="stylesheet">
     @if((session('localeDir', 'ltr') == 'rtl'))
     <!-- Rtl Style -->
     <link href="{{asset('/')}}css/rtl-style.css" rel="stylesheet">
@@ -49,6 +51,8 @@ if (!isset($seo)) {
     <script src="{{asset('/')}}js/jquery.min.js"></script>
     <script src="{{asset('/')}}js/popper.js"></script>
     <script src="{{asset('/')}}js/bootstrap.min.js"></script>
+    <!-- training JavaScript -->
+    <script src="{{asset('/')}}js/training.js"></script>
     <!-- Owl carousel -->
     <script src="{{asset('/')}}js/owl.carousel.js"></script>
     <script src="{{ asset('/') }}admin_assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
